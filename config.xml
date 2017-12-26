@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.frigatesoft.gym"
+    versionCode = "10"
+    version     = "1.0.0" >
+
+<!-- versionCode is optional and Android only -->
+
+  <name>GYM APP</name>
+
+  <description>
+      GYM Membership Management App
+  </description>
+
+  <author href="https://www.frigatesoft.com" email="abdelkawy@frigatesoft.com">
+      Project Team
+  </author>
+
+</widget>
