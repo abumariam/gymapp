@@ -20,6 +20,15 @@
 		<script>
 			
 			$(document).ready(function() {
+				
+				if (typeof(Storage) !== "undefined" && localStorage.getItem("userid") !== null) {
+					//console.log(localStorage.getItem("userid"));
+					document.getElementById("userlogin").innerHTML = "<li><a href='Useraccount/profile.html' class='sign-in'><i class='glyphicon glyphicon-user'></i> My profile</a></li>";
+					
+				} else {
+					document.getElementById("userlogin").innerHTML = "<li><a href='#small-dialog' class='sign-in popup-top-anim' id='gotologin'><i class='glyphicon glyphicon-user'></i> login</a></li><li><a href='#small-dialog1' class='sign-in popup-top-anim'><i class='glyphicon glyphicon-edit'></i> Sign Up</a></li>";
+				}
+				
 				$('.popup-top-anim').magnificPopup({
 					type: 'inline',
 					fixedContentPos: false,
@@ -31,6 +40,7 @@
 					removalDelay: 300,
 					mainClass: 'my-mfp-zoom-in'
 				});	
+				
 				
 				
 				
@@ -51,13 +61,36 @@
 									console.log("Sorry, your browser does not support Web Storage...");
 
 								}
-								document.location = 'Useraccount/profile.html';
+								self.location = 'Useraccount/profile.html';
 								
 							}
 						}
 					};
 					
 					xmlhttp.open("GET", "http://localhost/~abdelkawy/gymphp/new/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
+					xmlhttp.send();
+
+				});
+				
+				
+				$("#signup").click(function(){
+
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+
+							if(this.responseText == "error"){
+								$("#errorReg").html("SORRY...YOU ARE ALREADY REGISTERED USER...!");
+							}
+							else {
+								//console.log("Success:"+this.responseText);
+								//self.location = '#small-dialog';
+								$("#gotologin").click();
+							}
+						}
+					};
+					
+					xmlhttp.open("GET", "http://localhost/~abdelkawy/gymphp/new/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
 					xmlhttp.send();
 
 				});
@@ -82,10 +115,7 @@
         <li><a href="coaches.html"><i class="glyphicon glyphicon-eye-open"></i> COACHES </a></li>
         <li><a href="nutrition.html"><i class="glyphicon glyphicon-apple"></i> NUTRITION</a></li>
         <li><a href="#" class="menu"><i class="glyphicon glyphicon-duplicate"></i> USER<span class="glyphicon glyphicon-menu-down"></span></a>
-                  <ul class="nav-sub">
-            <li><a href="#small-dialog" class="sign-in popup-top-anim"><i class="glyphicon glyphicon-user"></i> login</a></li>
-            <li><a href="#small-dialog1" class="sign-in popup-top-anim"><i class="glyphicon glyphicon-edit"></i> Sign Up</a></li>
-          </ul>
+                  <ul class="nav-sub" id="userlogin"></ul>
                   <div class="clearfix"> </div>
                   <script>
 							$( "li a.menu" ).click(function() {
@@ -152,40 +182,38 @@
                       <h3><a href="main.html">OMAN GYM</a></h3>
                     </div>
             <div class="login-form signup-form">
+                     				<div class="wthree-text" id="errorReg"></div>
                       <form action="#" method="post">
                 <div class="styled-input">
-                          <input type="text" name="fname" required>
+                          <input type="text" id="fname" required>
                           <label>First name</label>
                           <span></span> </div>
                 <div class="styled-input">
-                          <input type="text" name="lname" required>
+                          <input type="text" id="lname" required>
                           <label>Last name</label>
                           <span></span> </div>
                 <div class="styled-input">
-                          <input type="text" name="mobile" required>
+                          <input type="text" id="mobile" required>
                           <label>Mobile</label>
                           <span></span> </div>
                 <div class="styled-input">
-                          <input type="text" name="address" required>
+                          <input type="text" id="address" required>
                           <label>Address</label>
                           <span></span> </div>
                 <div class="styled-input">
-                          <input type="text" name="email" required>
+                          <input type="text" id="email" required>
                           <label>Email</label>
                           <span></span> </div>
                 <div class="styled-input">
-                          <input type="text" name="loginname" required>
+                          <input type="text" id="username" required>
                           <label>Username</label>
                           <span></span> </div>
                 <div class="styled-input">
-                          <input type="password" name="pass" required>
+                          <input type="password" id="password" required>
                           <label>Password</label>
                           <span></span> </div>
-                <div class="wthree-text">
-                          <input type="checkbox" id="brand1" value="">
-                          <label for="brand1"><span></span>I accept the terms of use</label>
-                        </div>
-                <input type="submit" value="Sign Up">
+
+                <input type="button" value="Sign Up" id="signup">
               </form>
                     </div>
           </div>

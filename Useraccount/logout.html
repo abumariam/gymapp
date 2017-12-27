@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GYM APP</title>
+</head>
+
+<body>
+
+<script type="application/javascript">
+	if (typeof(Storage) !== "undefined") {
+			localStorage.removeItem("userid");
+			document.location = '../main.html';
+		} else {
+			document.location = '../main.html';
+		}
+	</script>
+</body>
+</html>

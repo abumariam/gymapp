@@ -54,7 +54,7 @@
 		} else {
 			document.location = '../main.html';
 		}
-		console.log(localStorage.getItem("userid"));
+		//console.log(localStorage.getItem("userid"));
 		
 	    function getUserData(userid) {
 		        document.getElementById("personDetails").innerHTML = "";
@@ -69,7 +69,20 @@
 		        xmlhttp.send();
 
 		}
+		function getClasses(userid) {
+		        document.getElementById("upcomingclasses").innerHTML = "";
+		        var xmlhttp = new XMLHttpRequest();
+		        xmlhttp.onreadystatechange = function() {
+		            if(this.readyState == 4 && this.status == 200) {
+		                document.getElementById("upcomingclasses").innerHTML = this.responseText;
+		            }
+		        };
+		        xmlhttp.open("GET", "http://localhost/~abdelkawy/gymphp/new/customer_class.php?userid=" + userid, true);
+		        xmlhttp.send();
+
+		}
 		getUserData(document.getElementById("userid").value);
+		getClasses(document.getElementById("userid").value);
 		
 		
     });
@@ -92,12 +105,13 @@
   <nav class="top-nav">
     <ul class="icon-list">
       <li class="menu-title">OMAN GYM</li>
-      <li><a href="profile.html"><i class="glyphicon glyphicon-folder-open"></i> Profile </a></li>
-      <li><a href="meals.html"><i class="glyphicon glyphicon-cutlery"></i> Meals </a></li>
-      <li><a href="workout.html"><i class="glyphicon glyphicon-heart-empty"></i> Work out </a></li>
-      <li><a href="exercises.html"><i class="glyphicon glyphicon-time"></i> Exercises </a></li>
+      <li><a href="profile.html"><i class="glyphicon glyphicon-folder-open"></i> My Profile </a></li>
+      <li><a href="exercises.html"><i class="glyphicon glyphicon-time"></i> My Schedule </a></li>
+      <li><a href="performance.html"><i class="glyphicon glyphicon-stats"></i>Performance</a></li>
       <li><a href="classes.html"><i class="glyphicon glyphicon-hourglass"></i> Classes</a></li>
-      <li><a href="performance.html"><i class="glyphicon glyphicon-stats"></i> Performance</a></li>
+      <li><a href="workout.html"><i class="glyphicon glyphicon-heart-empty"></i> Work out </a></li>
+      <li><a href="meals.html"><i class="glyphicon glyphicon-cutlery"></i> Meals </a></li>
+      <li><a href="logout.html"><i class="glyphicon glyphicon-stats"></i> Logout</a></li>
     </ul>
   </nav>
   <button class="close-button" id="close-button">C</button>
@@ -148,25 +162,8 @@
       <br>
       <br>
       <br>
-      <h1 class="hdg  text-left" style="color: DarkMagenta; ">Upcoming Classes</h1>
-      <div class="media">
-        <div class="media-left"> <img src="images/cl1.jpg" class="media-object" style="width:100px"> </div>
-        <div class="media-body">
-          <h3 class="media-heading">Zumba</h3>
-          <p class="text-info">10:00 AM</p>
-          <p>Zumba is a dance fitness program created by Colombian dancer and choreographer Alberto &quot;Beto&quot; Perez during the 1990s</p>
-        </div>
-      </div>
-      <hr>
-      <div class="media">
-        <div class="media-left"> <img src="images/cl4.jpg" class="media-object" style="width:100px"> </div>
-        <div class="media-body">
-          <h3 class="media-heading">Trx</h3>
-          <p class="text-info">2:00 PM</p>
-          <p>he TRX System, also known as Total Resistance eXercise, refers to a specialized form of suspension training that utilizes equipment developed by former U.S </p>
-        </div>
-      </div>
-      <hr>
+      <h1 class="hdg  text-left" style="color: DarkMagenta; ">My Classes</h1>
+      <div id="upcomingclasses"></div>
       
       <!-- //properties --> 
       <!-- brands -->
@@ -176,9 +173,6 @@
           <div class="brand-grids"> <a href="#"><img src="images/c1.png" alt=""/></a> </div>
           <div class="brand-grids"> <a href="#"><img src="images/c6.png" alt=""/></a> </div>
           <div class="brand-grids"> <a href="#"><img src="images/c3.png" alt=""/></a> </div>
-          <div class="brand-grids"> <a href="#"><img src="images/c4.png" alt=""/></a> </div>
-          <div class="brand-grids"> <a href="#"><img src="images/c5.png" alt=""/></a> </div>
-          <div class="brand-grids"> <a href="#"><img src="images/c6.png" alt=""/></a> </div>
           <div class="clearfix"> </div>
         </div>
       </div>

@@ -18,6 +18,15 @@
 <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 <script>
 	$(document).ready(function() {
+		
+		if (typeof(Storage) !== "undefined" && localStorage.getItem("userid") !== null) {
+					//console.log(localStorage.getItem("userid"));
+					document.getElementById("userlogin").innerHTML = "<li><a href='Useraccount/profile.html' class='sign-in'><i class='glyphicon glyphicon-user'></i> My profile</a></li>";
+					
+				} else {
+					document.getElementById("userlogin").innerHTML = "<li><a href='#small-dialog' class='sign-in popup-top-anim' id='gotologin'><i class='glyphicon glyphicon-user'></i> login</a></li><li><a href='#small-dialog1' class='sign-in popup-top-anim'><i class='glyphicon glyphicon-edit'></i> Sign Up</a></li>";
+				}
+		
 		$('.popup-top-anim').magnificPopup({
 			type: 'inline',
 			fixedContentPos: false,
