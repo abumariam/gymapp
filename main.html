@@ -42,13 +42,13 @@
 				});	
 				
 
-        $("#signin").click(function(){
-			//  $("#formLogin").submit(function(event){
-					// event.preventDefault();
+        // $("#signin").click(function(){
+			 $("#formLogin").submit(function(event){
+					event.preventDefault();
           alert("try to submit");
 					var userName = $('#Username').val();
 					var passWord = $("#Password").val();
-          alert(userName+passWord);
+          alert(userName+" - "+passWord);
 
 					$.get("http://192.168.1.23/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
 						// Display the returned data in browser
