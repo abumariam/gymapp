@@ -16,6 +16,8 @@
   <author href="https://www.frigatesoft.com" email="abdelkawy@frigatesoft.com">
       Project Team
   </author>
+   <icon src="android_icons/icon.png" platform="ios" width="180" height="180" />
+
   <icon src="android_icons/icon.png" platform="android" width="180" height="180" />
 
   <platform name="android">
