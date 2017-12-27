@@ -44,7 +44,7 @@
 				$("#signin").click(function(){
 					var userName = $('#Username').val();
 					var passWord = $("#Password").val();
-					$.get("http://192.168.1.9/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
+					$.get("http://192.168.1.23/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
 						// Display the returned data in browser
 						//$("#result").html(data);
 						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password!");
@@ -129,7 +129,7 @@
 					var Address = $("#address").val();
 					var Mobile = $("#mobile").val();
 					
-					$.get("http://192.168.1.9/~abdelkawy/gymphp/new/Registration.php", {username: userName, password: passWord, fname: firstName, lname: lastName, email: Email, address: Address, mobile: Mobile} , function(data){
+					$.get("http://192.168.1.23/~abdelkawy/gymphp/new/Registration.php", {username: userName, password: passWord, fname: firstName, lname: lastName, email: Email, address: Address, mobile: Mobile} , function(data){
 						// Display the returned data in browser
 						if(data == "error"){
 								$("#errorReg").html("SORRY...YOU ARE ALREADY REGISTERED USER...!");
