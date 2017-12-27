@@ -16,6 +16,7 @@
   <author href="https://www.frigatesoft.com" email="abdelkawy@frigatesoft.com">
       Project Team
   </author>
+  <platform name="android">
 <icon src="ldpi.png" platform="android" qualifier="ldpi" />
 <icon src="android_icons/mdpi.png" platform="android" qualifier="mdpi" />
 <icon src="android_icons/hdpi.png" platform="android" qualifier="hdpi" />
@@ -23,4 +24,5 @@
 <icon src="android_icons/xxhdpi.png" platform="android" qualifier="xxhdpi" />
 <icon src="android_icons/xxxhdpi.png" platform="android" qualifier="xxxhdpi" />
 <icon src="android_icons/fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />
+</platform>
 </widget>
