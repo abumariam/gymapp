@@ -41,22 +41,16 @@
 					mainClass: 'my-mfp-zoom-in'
 				});	
 				
-				
-				
-				
 				$("#signin").click(function(){
-					$("#logedin").html("");
-					var xmlhttp = new XMLHttpRequest();
-					xmlhttp.onreadystatechange = function() {
-						if (this.readyState == 4 && this.status == 200) {
-							//document.getElementById("logedin").innerHTML = this.responseText;
-							
-							//setCookie('userid', this.responseText, 365);
-							
-							if(this.responseText == "Invalid account") $("#errorMSG").html("Invalid username or password!");
+					var userName = $('#Username').val();
+					var passWord = $("#Password").val();
+					$.get("http://localhost/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
+						// Display the returned data in browser
+						//$("#result").html(data);
+						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password!");
 							else{
 								if (typeof(Storage) !== "undefined") {
-									localStorage.setItem("userid", this.responseText);
+									localStorage.setItem("userid", data);
 								} else {
 									console.log("Sorry, your browser does not support Web Storage...");
 
@@ -64,22 +58,80 @@
 								self.location = 'Useraccount/profile.html';
 								
 							}
-						}
-					};
+					});
 					
-					xmlhttp.open("GET", "http://192.168.1.9/~abdelkawy/gymphp/new/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
-					xmlhttp.send();
+					
+//					$.ajax({
+//					  type: "POST",
+//					  contentType: "application/json; charset=utf-8",
+//					  dataType: "jsonp",
+//					  jsonp: 'jsonp_callback',
+//					  url: "http://localhost/~abdelkawy/gymphp/new/login.php",
+//					  data: "{user: '" + $('#Username').val() + "',pass: '" + $("#Password").val() + "'}",
+//					  
+//					  success: function (response) {
+//						  //$("#book_message").html(response.d);
+//						  console.log(response.d);
+//						  var phpObj = JSON.parse(response.d);
+//						  console.log(phpObj[0]);
+//						  if(phpObj[0] == "Invalid account") $("#errorMSG").html("Invalid username or password!");
+//							else{
+//								if (typeof(Storage) !== "undefined") {
+//									localStorage.setItem("userid", phpObj[0]);
+//								} else {
+//									console.log("Sorry, your browser does not support Web Storage...");
+//
+//								}
+//								self.location = 'Useraccount/profile.html';
+//								
+//							}
+//					  },
+//					  failure: function (response) {
+//						  console.log(response.d);
+//					  }
+//				  });
+					
+//					$("#logedin").html("");
+//					var xmlhttp = new XMLHttpRequest();
+//					xmlhttp.onreadystatechange = function() {
+//						if (this.readyState == 4 && this.status == 200) {
+//							//document.getElementById("logedin").innerHTML = this.responseText;
+//							
+//							//setCookie('userid', this.responseText, 365);
+//							
+//							if(this.responseText == "Invalid account") $("#errorMSG").html("Invalid username or password!");
+//							else{
+//								if (typeof(Storage) !== "undefined") {
+//									localStorage.setItem("userid", this.responseText);
+//								} else {
+//									console.log("Sorry, your browser does not support Web Storage...");
+//
+//								}
+//								self.location = 'Useraccount/profile.html';
+//								
+//							}
+//						}
+//					};
+//					
+//					xmlhttp.open("GET", "http://localhost/~abdelkawy/gymphp/new/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
+//					xmlhttp.send();
 
 				});
 				
 				
 				$("#signup").click(function(){
 
-					var xmlhttp = new XMLHttpRequest();
-					xmlhttp.onreadystatechange = function() {
-						if (this.readyState == 4 && this.status == 200) {
-
-							if(this.responseText == "error"){
+					var userName = $('#username').val();
+					var passWord = $("#password").val();
+					var firstName = $("#fname").val();
+					var lastName = $("#lname").val();
+					var Email = $("#email").val();
+					var Address = $("#address").val();
+					var Mobile = $("#mobile").val();
+					
+					$.get("http://localhost/~abdelkawy/gymphp/new/Registration.php", {username: userName, password: passWord, fname: firstName, lname: lastName, email: Email, address: Address, mobile: Mobile} , function(data){
+						// Display the returned data in browser
+						if(data == "error"){
 								$("#errorReg").html("SORRY...YOU ARE ALREADY REGISTERED USER...!");
 							}
 							else {
@@ -87,11 +139,25 @@
 								//self.location = '#small-dialog';
 								$("#gotologin").click();
 							}
-						}
-					};
+					});
 					
-					xmlhttp.open("GET", "http://192.168.1.9/~abdelkawy/gymphp/new/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
-					xmlhttp.send();
+//					var xmlhttp = new XMLHttpRequest();
+//					xmlhttp.onreadystatechange = function() {
+//						if (this.readyState == 4 && this.status == 200) {
+//
+//							if(this.responseText == "error"){
+//								$("#errorReg").html("SORRY...YOU ARE ALREADY REGISTERED USER...!");
+//							}
+//							else {
+//								//console.log("Success:"+this.responseText);
+//								//self.location = '#small-dialog';
+//								$("#gotologin").click();
+//							}
+//						}
+//					};
+//					
+//					xmlhttp.open("GET", "http://localhost/~abdelkawy/gymphp/new/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
+//					xmlhttp.send();
 
 				});
 		}); 
@@ -146,7 +212,7 @@
                       <h3><a href="main.html">OMAN GYM</a></h3>
                     </div>
             <div class="login-form">
-				<div class="wthree-text" id="errorMSG"></div>
+				<div id="errorMSG"></div>
                       <form action="#" method="post">
                 <div class="styled-input">
                           <input type="text" id="Username" required>
@@ -257,7 +323,7 @@
                   <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 
                   <!-- Right-Button --> 
                   <a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
-        <script src="js/custom.js"></script> 
+<!--        <script src="js/custom.js"></script> -->
       </div>
               <!-- //banner --> 
               <!-- welcome -->
