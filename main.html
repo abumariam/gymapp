@@ -48,8 +48,8 @@
 					var passWord = $("#Password").val();
 					$.get("http://192.168.1.23/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
 						// Display the returned data in browser
-						//$("#result").html(data);
-						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password!");
+						alert(data);
+						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password. Or your account is not active.");
 							else{
 								if (typeof(Storage) !== "undefined") {
 									localStorage.setItem("userid", data);
@@ -61,7 +61,6 @@
 								
 							}
 					});
-				});
 				
 //				$("#signin").click(function(){
 //					var userName = $('#Username').val();
@@ -138,11 +137,13 @@
 //					xmlhttp.open("GET", "http://localhost/~abdelkawy/gymphp/new/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
 //					xmlhttp.send();
 
-//				});
+				});
 				
-				 
+				 $("#formRegist").submit(function(event){
+					// Stop form from submitting normally
+					event.preventDefault();
         
-				$("#signup").click(function(){
+				//$("#signup").click(function(){
 
 					var userName = $('#username').val();
 					var passWord = $("#password").val();
@@ -160,6 +161,7 @@
 							else {
 								//console.log("Success:"+this.responseText);
 								//self.location = '#small-dialog';
+								alert("Congratulations! your account has been created but it is not active till it gets approved from the management. You will receive an email when it gets approved.");
 								$("#gotologin").click();
 							}
 					});
@@ -272,7 +274,7 @@
                     </div>
             <div class="login-form signup-form">
                      				<div class="wthree-text" id="errorReg"></div>
-                      <form action="#" method="post">
+                      <form action="#" method="get" id="formRegist">
                 <div class="styled-input">
                           <input type="text" id="fname" required>
                           <label>First name</label>
@@ -302,7 +304,7 @@
                           <label>Password</label>
                           <span></span> </div>
 
-                <input type="button" value="Sign Up" id="signup">
+                <input type="submit" value="Sign Up" id="signup">
               </form>
                     </div>
           </div>
