@@ -19,8 +19,9 @@
 
   <!-- all platforms -->
   <preference name="phonegap-version" value="cli-6.5.0" />
-  <preference name="fullscreen" value="true" />
-
+<!--   <preference name="fullscreen" value="true" /> -->  
+  <content src="index.html"/>
+  <access origin="*"/>
   <!-- iOS only -->
   <preference name="target-device" value="universal" />
   <preference name="prerendered-icon" value="true" />
@@ -49,6 +50,5 @@
 <icon src="android_icons/xxhdpi.png" platform="android" qualifier="xxhdpi" />
 <icon src="android_icons/xxxhdpi.png" platform="android" qualifier="xxxhdpi" />
 <icon src="android_icons/fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />
-<allow-navigation href="*" />
-<access origin="*" />
+
 </widget>
