@@ -16,11 +16,27 @@
   <author href="https://www.frigatesoft.com" email="abdelkawy@frigatesoft.com">
       Project Team
   </author>
-   <icon src="android_icons/icon.png" platform="ios" width="180" height="180" />
 
-  <icon src="android_icons/icon.png" platform="android" width="180" height="180" />
+  <platform name="android" >
+    <preference name="android-minSdkVersion" value="16"/>
+    <preference name="android-targetSdkVersion" value="23"/>
+    <preference name="android-installLocation" value="auto"/>
+    <preference name="android-signed" value="true"/>
+    <preference name="Fullscreen" value="true"/>
+    <preference name="AndroidLaunchMode" value="singleTop"/>
+</platform>
+<platform name="ios" >
+    <preference name="deployment-target" value="8.0"/>
+    <preference name="ios-configuration" value="production"/>
+    <preference name="Fullscreen" value="true"/>
+    <preference name="exit-on-suspend" value="true"/>
+</platform>
 
-  <platform name="android">
+
+<icon src="android_icons/icon.png" platform="ios" width="180" height="180" />
+
+<icon src="android_icons/icon.png" platform="android" width="180" height="180" />
+
 <icon src="ldpi.png" platform="android" qualifier="ldpi" />
 <icon src="android_icons/mdpi.png" platform="android" qualifier="mdpi" />
 <icon src="android_icons/hdpi.png" platform="android" qualifier="hdpi" />
@@ -28,5 +44,5 @@
 <icon src="android_icons/xxhdpi.png" platform="android" qualifier="xxhdpi" />
 <icon src="android_icons/xxxhdpi.png" platform="android" qualifier="xxxhdpi" />
 <icon src="android_icons/fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />
-</platform>
+
 </widget>
