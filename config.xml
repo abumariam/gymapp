@@ -17,20 +17,25 @@
       Project Team
   </author>
 
-  <platform name="android" >
-    <preference name="android-minSdkVersion" value="16"/>
-    <preference name="android-targetSdkVersion" value="23"/>
-    <preference name="android-installLocation" value="auto"/>
-    <preference name="android-signed" value="true"/>
-    <preference name="Fullscreen" value="true"/>
-    <preference name="AndroidLaunchMode" value="singleTop"/>
-</platform>
-<platform name="ios" >
-    <preference name="deployment-target" value="8.0"/>
-    <preference name="ios-configuration" value="production"/>
-    <preference name="Fullscreen" value="true"/>
-    <preference name="exit-on-suspend" value="true"/>
-</platform>
+  <!-- all platforms -->
+  <preference name="phonegap-version" value="cli-6.5.0" />
+  <preference name="fullscreen" value="true" />
+
+  <!-- iOS only -->
+  <preference name="target-device" value="universal" />
+  <preference name="prerendered-icon" value="true" />
+  <preference name="detect-data-types" value="true" />
+  <preference name="exit-on-suspend" value="true" />
+  <preference name="deployment-target" value="7.0" />
+
+  <!-- Android only -->
+  <preference name="android-build-tool" value="ant|gradle" />
+  <preference name="android-minSdkVersion" value="10" />
+  <preference name="android-maxSdkVersion" value="15" />
+  <preference name="android-targetSdkVersion" value="12" />
+  <preference name="android-installLocation" value="auto" />
+  <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
+
 
 
 <icon src="android_icons/icon.png" platform="ios" width="180" height="180" />
@@ -44,5 +49,6 @@
 <icon src="android_icons/xxhdpi.png" platform="android" qualifier="xxhdpi" />
 <icon src="android_icons/xxxhdpi.png" platform="android" qualifier="xxxhdpi" />
 <icon src="android_icons/fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />
-
+<allow-navigation href="*" />
+<access origin="*" />
 </widget>
