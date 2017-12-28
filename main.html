@@ -68,7 +68,7 @@
 					// });
 				
         var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://www.frigatesoft.com/portal/gymapp/login.php?user=" + userName + "&pass=" + passWord, false);
+            xhr.open("POST", "http://www.frigatesoft.com/portal/gymapp/login.php?user=" + userName + "&pass=" + passWord, true);
 
             xhr.onload = function () {
               if (xhr.status == 200) {
