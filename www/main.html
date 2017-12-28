@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 		<head>
-		<title>GYM APP</title>
+		<title>Oman GYM</title>
 		<!-- For-Mobile-Apps-and-Meta-Tags -->
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -41,63 +41,32 @@
 					mainClass: 'my-mfp-zoom-in'
 				});	
 				
-
-        // $("#signin").click(function(){
-			 $("#formLogin").submit(function(event){
+//				$("#signin").click(function(){
+				$("#formLogin").submit(function(event){
 					event.preventDefault();
-
-          alert("try to submit");
+					
 					var userName = $('#Username').val();
 					var passWord = $("#Password").val();
+					$.get("http://171.18.160.100/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
+						// Display the returned data in browser
+						alert(data);
+						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password. Or your account is not active.");
+							else{
+								if (typeof(Storage) !== "undefined") {
+									localStorage.setItem("userid", data);
+								} else {
+									console.log("Sorry, your browser does not support Web Storage...");
 
-					// $.get("http://192.168.1.23/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
-					// 	// Display the returned data in browser
-					// 	alert(data);
-					// 	if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password. Or your account is not active.");
-					// 		else{
-					// 			if (typeof(Storage) !== "undefined") {
-					// 				localStorage.setItem("userid", data);
-					// 			} else {
-					// 				console.log("Sorry, your browser does not support Web Storage...");
-
-					// 			}
-					// 			self.location = 'Useraccount/profile.html';
+								}
+								self.location = 'Useraccount/profile.html';
 								
-					// 		}
-					// });
+							}
+					});
 				
-        // var xhr = new XMLHttpRequest();
-        //     xhr.open("GET", "http://www.frigatesoft.com/portal/gymapp/login.php?user=" + userName + "&pass=" + passWord, false);
-
-        //     xhr.onload = function () {
-        //       if (xhr.status == 200) {
-        //         alert("Web Service is working");
-                  
-        //         }
-        //         else if (xhr.status == 404) {
-        //             alert("Web Service Doesn't Exist");
-        //         }
-        //         else {
-        //             alert("Unknown error occured while connecting to server");
-        //         }
-
-        //     }
-        //     xhr.send();
-        //     if(xhr.responseText == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password. Or your account is not active.");
-        //           else{
-        //             if (typeof(Storage) !== "undefined") {
-        //               localStorage.setItem("userid", xhr.responseText);
-        //             } else {
-        //               console.log("Sorry, your browser does not support Web Storage...");
-
-        //             }
-        //             self.location = 'Useraccount/profile.html';
-                    
-        //           }
 
 //					var userName = $('#Username').val();
 //					var passWord = $("#Password").val();
-//					$.get("http://localhost/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
+//					$.get("http://171.18.160.100/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
 //						// Display the returned data in browser
 //						//$("#result").html(data);
 //						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password!");
@@ -119,7 +88,7 @@
 //					  contentType: "application/json; charset=utf-8",
 //					  dataType: "jsonp",
 //					  jsonp: 'jsonp_callback',
-//					  url: "http://localhost/~abdelkawy/gymphp/new/login.php",
+//					  url: "http://171.18.160.100/~abdelkawy/gymphp/new/login.php",
 //					  data: "{user: '" + $('#Username').val() + "',pass: '" + $("#Password").val() + "'}",
 //					  
 //					  success: function (response) {
@@ -145,41 +114,29 @@
 //				  });
 					
 //					$("#logedin").html("");
-					var xmlhttp = new XMLHttpRequest();
-					xmlhttp.onreadystatechange = function() {
-
-						if (this.readyState == 4 && this.status == 200) {
-							
-							if(this.responseText == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password. Or your account is not active.");
-							else{
-								if (typeof(Storage) !== "undefined") {
-									localStorage.setItem("userid", this.responseText);
-								} else {
-									console.log("Sorry, your browser does not support Web Storage...");
-
-								}
-								self.location = 'Useraccount/profile.html';
-								
-							}
-						}
-            else if (this.readyState < 4 && this.readyState > 0){
-                $("#errorMSG").html("<div style='z-index:9999; text-align:center;'><img src='images/loading.gif' style='width:20%;'></div>");
-
-            }
-            // if (this.status == 200) {
-            //     alert("Web Service is working");
-                  
-            //     }
-            // else if (this.status == 404) {
-            //     alert("Web Service Doesn't Exist");
-            // }
-            // else {
-            //     alert("Unknown error occured while connecting to server");
-            // }
-					};
-					
-					xmlhttp.open("GET", "http://172.18.160.100/~abdelkawy/gymphp/new/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
-					xmlhttp.send();
+//					var xmlhttp = new XMLHttpRequest();
+//					xmlhttp.onreadystatechange = function() {
+//						if (this.readyState == 4 && this.status == 200) {
+//							//document.getElementById("logedin").innerHTML = this.responseText;
+//							
+//							//setCookie('userid', this.responseText, 365);
+//							
+//							if(this.responseText == "Invalid account") $("#errorMSG").html("Invalid username or password!");
+//							else{
+//								if (typeof(Storage) !== "undefined") {
+//									localStorage.setItem("userid", this.responseText);
+//								} else {
+//									console.log("Sorry, your browser does not support Web Storage...");
+//
+//								}
+//								self.location = 'Useraccount/profile.html';
+//								
+//							}
+//						}
+//					};
+//					
+//					xmlhttp.open("GET", "http://171.18.160.100/~abdelkawy/gymphp/new/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
+//					xmlhttp.send();
 
 				});
 				
@@ -197,7 +154,7 @@
 					var Address = $("#address").val();
 					var Mobile = $("#mobile").val();
 					
-					$.get("http://www.frigatesoft.com/portal/gymapp/Registration.php", {username: userName, password: passWord, fname: firstName, lname: lastName, email: Email, address: Address, mobile: Mobile} , function(data){
+					$.get("http://171.18.160.100/~abdelkawy/gymphp/new/Registration.php", {username: userName, password: passWord, fname: firstName, lname: lastName, email: Email, address: Address, mobile: Mobile} , function(data){
 						// Display the returned data in browser
 						if(data == "error"){
 								$("#errorReg").html("SORRY...YOU ARE ALREADY REGISTERED USER...!");
@@ -225,7 +182,7 @@
 //						}
 //					};
 //					
-//					xmlhttp.open("GET", "http://localhost/~abdelkawy/gymphp/new/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
+//					xmlhttp.open("GET", "http://171.18.160.100/~abdelkawy/gymphp/new/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
 //					xmlhttp.send();
 
 				});

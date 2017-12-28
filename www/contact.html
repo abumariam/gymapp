@@ -1,170 +1,358 @@
-﻿<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-<title>Fortune Estates a Mobile App Flat Bootstrap Responsive Website Template | Contact :: W3layouts</title> 
-<!-- For-Mobile-Apps-and-Meta-Tags -->
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="GYM Management App" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //For-Mobile-Apps-and-Meta-Tags -->
-<!-- Custom Theme files -->
-<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-<link href="css/style.css" type="text/css" rel="stylesheet" media="all">  
-<!-- //Custom Theme files -->
-<!-- js -->
-<script src="js/jquery-2.2.3.min.js"></script> 
-<!-- //js -->
-<!-- pop-up-box -->
-<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-<script>
-	$(document).ready(function() {
-		$('.popup-top-anim').magnificPopup({
-			type: 'inline',
-			fixedContentPos: false,
-			fixedBgPos: true,
-			overflowY: 'auto',
-			closeBtnInside: true,
-			preloader: false,
-			midClick: true,
-			removalDelay: 300,
-			mainClass: 'my-mfp-zoom-in'
-		});																							
-	}); 
-</script>
-<!--//pop-up-box -->
-<!-- web-fonts -->  
-<link href='/../fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
-<link href='/../fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<!-- //web-fonts -->
-</head>
-<body class="bg">
-	<div class="agile-main"> 
-		<div class="menu-wrap" id="style-1">  
-			<nav class="top-nav">
-				<ul class="icon-list">
-					<li class="menu-title">OMAN GYM</li>
-					<li><a href="main.html"><i class="glyphicon glyphicon-home"></i> HOME </a></li>
-					<li><a href="about.html"><i class="glyphicon glyphicon-info-sign"></i> ABOUT </a></li>
-					<li><a href="join.html"><i class="glyphicon glyphicon-briefcase"></i> JOIN US </a></li>
-					<li><a href="coaches.html"><i class="glyphicon glyphicon-eye-open"></i> COACHES </a></li>
-					<li><a href="nutrition.html"><i class="glyphicon glyphicon-apple"></i> NUTRITION</a></li>
-					<li><a href="#" class="menu"><i class="glyphicon glyphicon-duplicate"></i> USER <span class="glyphicon glyphicon-menu-down"></span></a>
-						<ul class="nav-sub">
-							<li><a href="#small-dialog" class="sign-in popup-top-anim"><i class="glyphicon glyphicon-user"></i> login</a></li>                                             
-							<li><a href="#small-dialog1" class="sign-in popup-top-anim"><i class="glyphicon glyphicon-edit"></i> Sign Up</a></li>																								
-							
-						</ul>
-						<div class="clearfix"> </div>
-						<script>
+		<head>
+		<title>GYM APP</title>
+		<!-- For-Mobile-Apps-and-Meta-Tags -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!-- //For-Mobile-Apps-and-Meta-Tags -->
+		<!-- Custom Theme files -->
+		<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+		<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+		<link rel="stylesheet" href="css/ken-burns.css" type="text/css" media="all" />
+		<!-- //Custom Theme files -->
+		<!-- js -->
+		<script src="js/jquery-2.2.3.min.js"></script>
+		<!-- //js -->
+		<!-- pop-up-box -->
+		<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+		<script>
+			
+			$(document).ready(function() {
+				
+				if (typeof(Storage) !== "undefined" && localStorage.getItem("userid") !== null) {
+					//console.log(localStorage.getItem("userid"));
+					document.getElementById("userlogin").innerHTML = "<li><a href='Useraccount/profile.html' class='sign-in'><i class='glyphicon glyphicon-user'></i> My profile</a></li>";
+					
+				} else {
+					document.getElementById("userlogin").innerHTML = "<li><a href='#small-dialog' class='sign-in popup-top-anim' id='gotologin'><i class='glyphicon glyphicon-user'></i> login</a></li><li><a href='#small-dialog1' class='sign-in popup-top-anim'><i class='glyphicon glyphicon-edit'></i> Sign Up</a></li>";
+				}
+				
+				$('.popup-top-anim').magnificPopup({
+					type: 'inline',
+					fixedContentPos: false,
+					fixedBgPos: true,
+					overflowY: 'auto',
+					closeBtnInside: true,
+					preloader: false,
+					midClick: true,
+					removalDelay: 300,
+					mainClass: 'my-mfp-zoom-in'
+				});	
+				
+//				$("#signin").click(function(){
+				$("#formLogin").submit(function(event){
+					event.preventDefault();
+					
+					var userName = $('#Username').val();
+					var passWord = $("#Password").val();
+					$.get("http://171.18.160.100/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
+						// Display the returned data in browser
+						alert(data);
+						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password. Or your account is not active.");
+							else{
+								if (typeof(Storage) !== "undefined") {
+									localStorage.setItem("userid", data);
+								} else {
+									console.log("Sorry, your browser does not support Web Storage...");
+
+								}
+								self.location = 'Useraccount/profile.html';
+								
+							}
+					});
+				
+
+//					var userName = $('#Username').val();
+//					var passWord = $("#Password").val();
+//					$.get("http://171.18.160.100/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
+//						// Display the returned data in browser
+//						//$("#result").html(data);
+//						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password!");
+//							else{
+//								if (typeof(Storage) !== "undefined") {
+//									localStorage.setItem("userid", data);
+//								} else {
+//									console.log("Sorry, your browser does not support Web Storage...");
+//
+//								}
+//								self.location = 'Useraccount/profile.html';
+//								
+//							}
+//					});
+//					
+					
+//					$.ajax({
+//					  type: "POST",
+//					  contentType: "application/json; charset=utf-8",
+//					  dataType: "jsonp",
+//					  jsonp: 'jsonp_callback',
+//					  url: "http://171.18.160.100/~abdelkawy/gymphp/new/login.php",
+//					  data: "{user: '" + $('#Username').val() + "',pass: '" + $("#Password").val() + "'}",
+//					  
+//					  success: function (response) {
+//						  //$("#book_message").html(response.d);
+//						  console.log(response.d);
+//						  var phpObj = JSON.parse(response.d);
+//						  console.log(phpObj[0]);
+//						  if(phpObj[0] == "Invalid account") $("#errorMSG").html("Invalid username or password!");
+//							else{
+//								if (typeof(Storage) !== "undefined") {
+//									localStorage.setItem("userid", phpObj[0]);
+//								} else {
+//									console.log("Sorry, your browser does not support Web Storage...");
+//
+//								}
+//								self.location = 'Useraccount/profile.html';
+//								
+//							}
+//					  },
+//					  failure: function (response) {
+//						  console.log(response.d);
+//					  }
+//				  });
+					
+//					$("#logedin").html("");
+//					var xmlhttp = new XMLHttpRequest();
+//					xmlhttp.onreadystatechange = function() {
+//						if (this.readyState == 4 && this.status == 200) {
+//							//document.getElementById("logedin").innerHTML = this.responseText;
+//							
+//							//setCookie('userid', this.responseText, 365);
+//							
+//							if(this.responseText == "Invalid account") $("#errorMSG").html("Invalid username or password!");
+//							else{
+//								if (typeof(Storage) !== "undefined") {
+//									localStorage.setItem("userid", this.responseText);
+//								} else {
+//									console.log("Sorry, your browser does not support Web Storage...");
+//
+//								}
+//								self.location = 'Useraccount/profile.html';
+//								
+//							}
+//						}
+//					};
+//					
+//					xmlhttp.open("GET", "http://171.18.160.100/~abdelkawy/gymphp/new/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
+//					xmlhttp.send();
+
+				});
+				
+				 $("#formRegist").submit(function(event){
+					// Stop form from submitting normally
+					event.preventDefault();
+        
+				//$("#signup").click(function(){
+
+					var userName = $('#username').val();
+					var passWord = $("#password").val();
+					var firstName = $("#fname").val();
+					var lastName = $("#lname").val();
+					var Email = $("#email").val();
+					var Address = $("#address").val();
+					var Mobile = $("#mobile").val();
+					
+					$.get("http://171.18.160.100/~abdelkawy/gymphp/new/Registration.php", {username: userName, password: passWord, fname: firstName, lname: lastName, email: Email, address: Address, mobile: Mobile} , function(data){
+						// Display the returned data in browser
+						if(data == "error"){
+								$("#errorReg").html("SORRY...YOU ARE ALREADY REGISTERED USER...!");
+							}
+							else {
+								//console.log("Success:"+this.responseText);
+								//self.location = '#small-dialog';
+								alert("Congratulations! your account has been created but it is not active till it gets approved from the management. You will receive an email when it gets approved.");
+								$("#gotologin").click();
+							}
+					});
+					
+//					var xmlhttp = new XMLHttpRequest();
+//					xmlhttp.onreadystatechange = function() {
+//						if (this.readyState == 4 && this.status == 200) {
+//
+//							if(this.responseText == "error"){
+//								$("#errorReg").html("SORRY...YOU ARE ALREADY REGISTERED USER...!");
+//							}
+//							else {
+//								//console.log("Success:"+this.responseText);
+//								//self.location = '#small-dialog';
+//								$("#gotologin").click();
+//							}
+//						}
+//					};
+//					
+//					xmlhttp.open("GET", "http://171.18.160.100/~abdelkawy/gymphp/new/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
+//					xmlhttp.send();
+
+				});
+		}); 
+		</script>
+
+		<!--//pop-up-box -->
+		<!-- web-fonts -->
+		<link href="/../fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
+		<link href="/../fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
+		<!-- //web-fonts -->
+		</head>
+		<body class="bg">
+<div class="agile-main">
+          <div class="menu-wrap" id="style-1">
+    <nav class="top-nav">
+              <ul class="icon-list">
+        <li class="menu-title">OMAN GYM</li>
+        <li><a href="main.html"><i class="glyphicon glyphicon-home"></i> HOME </a></li>
+        <li><a href="about.html"><i class="glyphicon glyphicon-info-sign"></i> ABOUT </a></li>
+        <li><a class="active" href="join.html"><i class="glyphicon glyphicon-briefcase"></i>JOIN US</a></li>
+        <li><a href="coaches.html"><i class="glyphicon glyphicon-eye-open"></i> COACHES </a></li>
+        <li><a href="nutrition.html"><i class="glyphicon glyphicon-apple"></i> NUTRITION</a></li>
+        <li><a href="#" class="menu"><i class="glyphicon glyphicon-duplicate"></i> USER<span class="glyphicon glyphicon-menu-down"></span></a>
+                  <ul class="nav-sub" id="userlogin"></ul>
+                  <div class="clearfix"> </div>
+                  <script>
 							$( "li a.menu" ).click(function() {
 							$( "ul.nav-sub" ).slideToggle( 300, function() {
 							// Animation complete.
 							});
 							});
 						</script> 
-					</li>
-					<li><a class="active" href="contact.html"><i class="glyphicon glyphicon-envelope"></i> CONTACT </a></li>
-				</ul>
-			</nav>
-			<button class="close-button" id="close-button">C</button>
-		</div> 
-		<div class="content-wrap">
-			<div class="header"> 
-				<div class="menu-icon">   
-					<button class="menu-button" id="open-button">O</button>
-				</div>
-				<div class="logo">
-					<h2><a href="main.html">OMAN GYM</a></h2>
-				</div>
-				<div class="login">
-					<a href="#small-dialog" class="sign-in popup-top-anim"><span class="glyphicon glyphicon-user"></span></a> 
-					<!-- modal -->
-					<div id="small-dialog" class="mfp-hide">
-						<div class="login-modal"> 	
-							<div class="booking-info">
-								<h3><a href="main.html">OMAN GYM</a></h3>
-							</div>
-							<div class="login-form">
-								<form action="#" method="post">
-									<div class="styled-input">
-										<input type="text" name="Username" required=""/>
-										<label>Username</label>
-										<span></span>
-									</div>
-									<div class="styled-input">
-										<input type="password" name="Password" required=""> 
-										<label>Password</label>
-										<span></span>
-									</div> 
-									<div class="wthree-text"> 
-										<ul> 
-											<li>
-												<input type="checkbox" id="brand" value="">
-												<label for="brand"><span></span> Remember me ?</label>  
-											</li>
-											<li> <a href="#">Forgot password?</a> </li>
-										</ul>
-										<div class="clear"> </div>
-									</div> 
-									<input type="submit" value="Sign In">		
-								</form>
-								<p>Don’t have an account ?<a href="#small-dialog1" class="sign-in popup-top-anim"> Sign Up</a></p>
-							</div> 
-						</div>
-					</div>
-					<!-- //modal --> 
-					<!-- modal-two -->
-					<div id="small-dialog1" class="mfp-hide">
-						<div class="login-modal">  
-							<div class="booking-info">
-								<h3><a href="main.html">OMAN GYM</a></h3>
-							</div>
-							<div class="login-form signup-form">
-								<form action="#" method="post">
-									<div class="styled-input">
-										<input type="text" name="Username" required=""/>
-										<label>Username</label>
-										<span></span>
-									</div>
-									<div class="styled-input">
-										<input type="text" name="email" required=""/>
-										<label>Email</label>
-										<span></span>
-									</div>
-									<div class="styled-input">
-										<input type="password" name="Password" required=""> 
-										<label>Password</label>
-										<span></span>
-									</div>  
-									<div class="wthree-text"> 
-										<input type="checkbox" id="brand1" value="">
-										<label for="brand1"><span></span>I accept the terms of use</label> 
-									</div>
-									<input type="submit" value="Sign Up">		
-								</form> 
-							</div> 
-						</div>
-					</div>
-					<!-- //modal-two --> 
-				</div> 
-				<div class="clearfix"> </div>
-			</div>
-			<div class="content">
-				<!-- banner -->
-				<div class="banner about-banner"> 
-					<div class="banner-img">  
-						<h3>Contact Us</h3>   
-					</div> 
-				</div>
-				<!-- //banner -->
-				<!-- contact -->
+                </li>
+        <li><a href="contact.html"><i class="glyphicon glyphicon-envelope"></i> CONTACT </a></li>
+      </ul>
+            </nav>
+    <button class="close-button" id="close-button">C</button>
+  </div>
+          <div class="content-wrap">
+    <div class="header">
+              <div class="menu-icon">
+        <button class="menu-button" id="open-button">O</button>
+      </div>
+              <div class="logo">
+        <h2><a href="main.html">OMAN GYM</a></h2>
+      </div>
+              <div class="login"> <a href="#small-dialog" class="sign-in popup-top-anim"><span class="glyphicon glyphicon-user"></span></a> 
+        <!-- modal -->
+        <div id="small-dialog" class="mfp-hide">
+                  <div class="login-modal">
+            <div class="booking-info">
+                      <h3><a href="main.html">OMAN GYM</a></h3>
+                    </div>
+            <div class="login-form">
+				<div class="wthree-text" id="errorMSG"></div>
+                      <form action="#" method="post">
+                <div class="styled-input">
+                          <input type="text" id="Username" required>
+                          <label>Username</label>
+                          <span></span> </div>
+                <div class="styled-input">
+                          <input type="password" id="Password" required>
+                          <label>Password</label>
+                          <span></span> </div>
+<!--
+                <div class="wthree-text">
+                          <ul>
+                    <li>
+                              <input type="checkbox" id="brand" value="">
+                              <label for="brand"><span></span> Remember me ?</label>
+                            </li>
+                    <li> <a href="#">Forgot password?</a> </li>
+                  </ul>
+                          <div class="clear"> </div>
+                        </div>
+-->
+                <input type="submit" value="   Sign In   " id="signin">
+              </form>
+                      <p>Don’t have an account ?<a href="#small-dialog1" class="sign-in popup-top-anim"> Sign Up</a></p>
+                    </div>
+          </div>
+                </div>
+        <!-- //modal --> 
+        <!-- modal-two -->
+        <div id="small-dialog1" class="mfp-hide">
+                  <div class="login-modal">
+            <div class="booking-info">
+                      <h3><a href="main.html">OMAN GYM</a></h3>
+                    </div>
+            <div class="login-form signup-form">
+                     				<div class="wthree-text" id="errorReg"></div>
+                      <form action="#" method="post">
+                <div class="styled-input">
+                          <input type="text" id="fname" required>
+                          <label>First name</label>
+                          <span></span> </div>
+                <div class="styled-input">
+                          <input type="text" id="lname" required>
+                          <label>Last name</label>
+                          <span></span> </div>
+                <div class="styled-input">
+                          <input type="text" id="mobile" required>
+                          <label>Mobile</label>
+                          <span></span> </div>
+                <div class="styled-input">
+                          <input type="text" id="address" required>
+                          <label>Address</label>
+                          <span></span> </div>
+                <div class="styled-input">
+                          <input type="text" id="email" required>
+                          <label>Email</label>
+                          <span></span> </div>
+                <div class="styled-input">
+                          <input type="text" id="username" required>
+                          <label>Username</label>
+                          <span></span> </div>
+                <div class="styled-input">
+                          <input type="password" id="password" required>
+                          <label>Password</label>
+                          <span></span> </div>
+
+                <input type="submit" value="Sign Up" id="signup">
+              </form>
+                    </div>
+          </div>
+                </div>
+        <!-- //modal-two --> 
+      </div>
+              <div class="clearfix"> </div>
+            </div>
+    <div class="content"> 
+              <!-- banner -->
+              <div class="banner">
+        <div id="kb" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000" data-pause="hover"> 
+                  <!-- Wrapper-for-Slides -->
+                  <div class="carousel-inner" role="listbox"> 
+            <!-- First-Slide -->
+            <div class="item active">
+                      <div class="banner-img">
+                <div class="carousel-caption kb_caption">
+                          <h3 data-animation="animated flipInX">Real Life</h3>
+                        </div>
+              </div>
+                    </div>
+            <!-- Second-Slide -->
+            <div class="item">
+                      <div class="banner-img banner-img1">
+                <div class="carousel-caption kb_caption kb_caption_right">
+                          <h3 data-animation="animated flipInX">Be Sport</h3>
+                        </div>
+              </div>
+                    </div>
+            <!-- Third-Slide -->
+            <div class="item">
+                      <div class="banner-img banner-img2">
+                <div class="carousel-caption kb_caption kb_caption_center">
+                          <h3 data-animation="animated flipInX">Be Health</h3>
+                        </div>
+              </div>
+                    </div>
+          </div>
+                  <!-- Left-Button --> 
+                  <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 
+                  <!-- Right-Button --> 
+                  <a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next"> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+        <script src="js/custom.js"></script> 
+      </div>
+              <!-- //banner --> 
+              <!-- contact -->
 				<div class="w3agile contact"> 
 					<h3 class="w3ls-title">Get In Touch</h3>
 					<div class="contact-form"> 
@@ -172,7 +360,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<input type="text" name="Name" placeholder="Name" required="">
 							<input type="text" name="Email" placeholder="Email" required="">
 							<input type="text" name="Subject" placeholder="Subject" required="">
-							<textarea name="Message" placeholder="Message" required=""></textarea>
+							<textarea name="Message" placeholder="Message" required></textarea>
 							<input type="submit" value="SEND">
 						</form> 
 					</div>
@@ -189,66 +377,54 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 				</div>
 				<!-- //contact --> 
-				<!-- brands -->
-				<div class="w3agile brands"> 
-					<h3 class="w3ls-title">OUR CLIENTS</h3> 
-					<div class="brands-info">
-						<div class="brand-grids">
-							<a href="#"><img src="images/c1.png" alt=""/></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/c2.png" alt=""/></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/c3.png" alt=""/></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/c4.png" alt=""/></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/c5.png" alt=""/></a>
-						</div>
-						<div class="brand-grids">
-							<a href="#"><img src="images/c6.png" alt=""/></a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</div>
-				<!-- //brands -->
-				<!-- footer -->
-				<div class="w3agile footer"> 
-					<div class="social-icons">
-						<ul>
-							<li><a href="#"> </a></li>
-							<li><a href="#" class="fb"> </a></li>
-							<li><a href="#" class="gp"> </a></li>
-							<li><a href="#" class="drb"> </a></li>
-						</ul>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="footer-nav">
-						<ul>  
-							<li><a href="main.html"> HOME </a></li>
-							<li><a href="about.html"> ABOUT </a> </li>
-							<li><a href="join.html">JOIN US </a></li>
-							<li><a href="nutrition.html"> NUTRITION </a></li>
-						</ul> 
-						<div class="clearfix"> </div>
-					</div> 
-					<div class="footer-text">
-						<p>© 2017 OMAN GYM . All Rights Reserved</p>
-					</div>
-				</div> 
-			</div>
-		</div>
-	</div> 
-	<!-- menu-js -->
-	<script src="js/classie.js"></script>
-	<script src="js/main.js"></script>
-	<!-- //menu-js -->
-	<!-- nicescroll-js -->
-	<script src="js/jquery.nicescroll.min.js"></script> 
-	<script>
+              <!-- brands -->
+              <div class="w3agile brands">
+        <h3 class="w3ls-title">OUR CLIENTS</h3>
+        <div class="brands-info">
+                  <div class="brand-grids"> <a href="#"><img src="images/c1.png" alt=""/></a> </div>
+                  <div class="brand-grids"> <a href="#"><img src="images/c2.png" alt=""/></a> </div>
+                  <div class="brand-grids"> <a href="#"><img src="images/c3.png" alt=""/></a> </div>
+                  <div class="brand-grids"> <a href="#"><img src="images/c4.png" alt=""/></a> </div>
+                  <div class="brand-grids"> <a href="#"><img src="images/c5.png" alt=""/></a> </div>
+                  <div class="brand-grids"> <a href="#"><img src="images/c6.png" alt=""/></a> </div>
+                  <div class="clearfix"> </div>
+                </div>
+      </div>
+              <!-- //brands --> 
+              <!-- footer -->
+              <div class="w3agile footer">
+        <div class="social-icons">
+                  <ul>
+            <li><a href="#"> </a></li>
+            <li><a href="#" class="fb"> </a></li>
+            <li><a href="#" class="gp"> </a></li>
+            <li><a href="#" class="drb"> </a></li>
+          </ul>
+                  <div class="clearfix"> </div>
+                </div>
+        <div class="footer-nav">
+                  <ul>
+            <li><a href="main.html"> HOME </a></li>
+            <li><a href="about.html"> ABOUT </a> </li>
+            <li><a href="join.html">JOIN US </a></li>
+            <li><a href="nutrition.html"> NUTRITION </a></li>
+          </ul>
+                  <div class="clearfix"> </div>
+                </div>
+        <div class="footer-text">
+                  <p>&copy; 2017 OMAN GYM . All Rights Reserved</p>
+                </div>
+      </div>
+            </div>
+  </div>
+        </div>
+<!-- menu-js --> 
+<script src="js/classie.js"></script> 
+<script src="js/main.js"></script> 
+<!-- //menu-js --> 
+<!-- nice scroll-js --> 
+<script src="js/jquery.nicescroll.min.js"></script> 
+<script>
 		$(document).ready(function() {
 	  
 			var nice = $("html").niceScroll();  // The document page (body)
@@ -256,12 +432,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("#div1").html($("#div1").html()+' '+nice.version);
 		
 			$("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#00F",boxzoom:true}); // First scrollable DIV
+			
+			
 		});
-	</script>
-	<!-- //nicescroll-js -->
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.js"></script>
+
+		
+	</script> 
+<!-- //nice scroll-js --> 
+<!-- Bootstrap core JavaScript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script src="js/bootstrap.js"></script>
 </body>
 </html>
