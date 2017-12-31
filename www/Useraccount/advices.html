@@ -58,11 +58,11 @@
 		
 	    
 		function getAdvices(userid) {
-		        document.getElementById("getAdvices").innerHTML = "";
+		        document.getElementById("myadvices").innerHTML = "";
 		        var xmlhttp = new XMLHttpRequest();
 		        xmlhttp.onreadystatechange = function() {
 		            if(this.readyState == 4 && this.status == 200) {
-		                document.getElementById("getAdvices").innerHTML = this.responseText;
+		                document.getElementById("myadvices").innerHTML = this.responseText;
 		            }
 		        };
 		        xmlhttp.open("POST", "http://172.18.130.130/gymphp/mobile/customer_advices.php?userid=" + userid, true);
