@@ -140,7 +140,7 @@
 						}
 					};
 					
-					xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/mobile/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
+					xmlhttp.open("POST", "http://portal.frigatesoft.com/gymapp/mobile/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
 					xmlhttp.send();
 
 				});
@@ -191,7 +191,7 @@
 						
 					};
 					
-					xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/mobile/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
+					xmlhttp.open("POST", "http://portal.frigatesoft.com/gymapp/mobile/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
 					xmlhttp.send();
 
 				});

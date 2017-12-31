@@ -65,7 +65,7 @@
 		                document.getElementById("getAdvices").innerHTML = this.responseText;
 		            }
 		        };
-		        xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/mobile/customer_advices.php?userid=" + userid, true);
+		        xmlhttp.open("POST", "http://portal.frigatesoft.com/gymapp/mobile/customer_advices.php?userid=" + userid, true);
 		        xmlhttp.send();
 
 		}
