@@ -56,33 +56,20 @@
 		}
 		//console.log(localStorage.getItem("userid"));
 		
-	    function getUserData(userid) {
-		        document.getElementById("personDetails").innerHTML = "";
+	    
+		function getAdvices(userid) {
+		        document.getElementById("getAdvices").innerHTML = "";
 		        var xmlhttp = new XMLHttpRequest();
 		        xmlhttp.onreadystatechange = function() {
 		            if(this.readyState == 4 && this.status == 200) {
-						//console.log(this.responseText);
-		                document.getElementById("personDetails").innerHTML = this.responseText;
+		                document.getElementById("getAdvices").innerHTML = this.responseText;
 		            }
 		        };
-		        xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/customer.php?userid=" + userid, true);
+		        xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/customer_advices.php?userid=" + userid, true);
 		        xmlhttp.send();
 
 		}
-		function getClasses(userid) {
-		        document.getElementById("upcomingclasses").innerHTML = "";
-		        var xmlhttp = new XMLHttpRequest();
-		        xmlhttp.onreadystatechange = function() {
-		            if(this.readyState == 4 && this.status == 200) {
-		                document.getElementById("upcomingclasses").innerHTML = this.responseText;
-		            }
-		        };
-		        xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/customer_class.php?userid=" + userid, true);
-		        xmlhttp.send();
-
-		}
-		getUserData(document.getElementById("userid").value);
-		getClasses(document.getElementById("userid").value);
+		getAdvices(document.getElementById("userid").value);
 		
 		
     });
@@ -140,30 +127,10 @@
       <div class="clearfix"> </div>
     </div>
     <div class="container">
-      <div class="view-account">
-        <section class="module">
-          <div class="module-inner">
-            <div class="side-bar">
-              <div class="user-info"> <img class="img-profile img-circle img-responsive center-block" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                <ul class="meta list list-unstyled text-center" id="personDetails">
-                </ul>
-              </div>
-              <nav class="side-menu" >
-                <ul class="nav text text-center">
-                  <li style="display: inline-grid"><a href="#"><span class="fa fa-cog"></span> Settings</a></li>
-                  <li style="display: inline-grid"><a href="#"><span class="fa fa-credit-card"></span> Billing</a></li>
-                  <li style="display: inline-grid"><a href="#"><span class="fa fa-envelope"></span> Messages</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </section>
-      </div>
+      
       <br>
-      <br>
-      <br>
-      <h1 class="hdg  text-left" style="color: DarkMagenta; ">My Classes</h1>
-      <div id="upcomingclasses"></div>
+      <h1 class="hdg  text-left" style="color: DarkMagenta; ">Advices for you</h1>
+      <div id="myadvices"></div>
       
       <!-- //properties --> 
       <!-- brands -->

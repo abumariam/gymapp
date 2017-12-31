@@ -47,7 +47,7 @@
 					
 //					var userName = $('#Username').val();
 //					var passWord = $("#Password").val();
-//					$.get("http://172.18.160.100/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
+//					$.get("http://portal.frigatesoft.com/gymapp/login.php", {user: userName, pass: passWord} , function(data){
 //						// Display the returned data in browser
 //						alert(data);
 //						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password. Or your account is not active.");
@@ -66,7 +66,7 @@
 
 //					var userName = $('#Username').val();
 //					var passWord = $("#Password").val();
-//					$.get("http://172.18.160.100/~abdelkawy/gymphp/new/login.php", {user: userName, pass: passWord} , function(data){
+//					$.get("http://portal.frigatesoft.com/gymapp/login.php", {user: userName, pass: passWord} , function(data){
 //						// Display the returned data in browser
 //						//$("#result").html(data);
 //						if(data == "Invalid account") $("#errorMSG").html("<div class='alert alert-danger'><strong>Erorr!</strong> Invalid username or password!");
@@ -88,7 +88,7 @@
 //					  contentType: "application/json; charset=utf-8",
 //					  dataType: "jsonp",
 //					  jsonp: 'jsonp_callback',
-//					  url: "http://172.18.160.100/~abdelkawy/gymphp/new/login.php",
+//					  url: "http://portal.frigatesoft.com/gymapp/login.php",
 //					  data: "{user: '" + $('#Username').val() + "',pass: '" + $("#Password").val() + "'}",
 //					  
 //					  success: function (response) {
@@ -140,7 +140,7 @@
 						}
 					};
 					
-					xmlhttp.open("GET", "http://172.18.160.100/~abdelkawy/gymphp/new/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
+					xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/login.php?user=" + $("#Username").val()+"&pass="+$("#Password").val(), true);
 					xmlhttp.send();
 
 				});
@@ -159,7 +159,7 @@
 //					var Address = $("#address").val();
 //					var Mobile = $("#mobile").val();
 					
-//					$.get("http://172.18.160.100/~abdelkawy/gymphp/new/Registration.php", {username: userName, password: passWord, fname: firstName, lname: lastName, email: Email, address: Address, mobile: Mobile} , function(data){
+//					$.get("http://portal.frigatesoft.com/gymapp/Registration.php", {username: userName, password: passWord, fname: firstName, lname: lastName, email: Email, address: Address, mobile: Mobile} , function(data){
 //						// Display the returned data in browser
 //						if(data == "error"){
 //								$("#errorReg").html("SORRY...YOU ARE ALREADY REGISTERED USER...!");
@@ -191,7 +191,7 @@
 						
 					};
 					
-					xmlhttp.open("GET", "http://172.18.160.100/~abdelkawy/gymphp/new/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
+					xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/Registration.php?username=" + $("#username").val()+"&password="+$("#password").val()+"&fname="+$("#fname").val()+"&lname="+$("#lname").val()+"&email="+$("#email").val()+"&address="+$("#address").val()+"&mobile="+$("#mobile").val(), true);
 					xmlhttp.send();
 
 				});
