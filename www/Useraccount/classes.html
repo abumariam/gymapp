@@ -49,9 +49,33 @@
 		        xmlhttp.send();
 
 		}
+		function addClass() {
+			
+			var userid = localStorage.getItem("userid");
+			var xmlhttp = new XMLHttpRequest();
+		        xmlhttp.onreadystatechange = function() {
+		            if(this.readyState == 4 && this.status == 200) {
+		                if(this.responseText == "success") $("#addclassDiv").html("<div class='alert alert-success'><strong>Success!</strong> Congratulations, the class has been added to your classes. See it on your profile page.</div>");
+						else if(this.responseText == "error") $("#addclassDiv").html("<div class='alert alert-danger'><strong>Error!</strong> Sorry, the class has not been added to your classes. Kindly tray again later.</div>");
+		            }
+					else if(this.readyState < 4 && this.readyState > 0 ){
+							
+						 $("#addclassDiv").html("<div style='text-align:center; z-index:9999'><img src='images/loading.gif' style='width:50px'></div>");
+					}
+		        };
+		        xmlhttp.open("GET", "http://172.18.160.100/~abdelkawy/gymphp/new/joinclass.php?userid=" + userid, true);
+		        xmlhttp.send();
+
+		}
 		getClasses(document.getElementById("userid").value);
+		
+		
+		
 	}); 
+	
+	
 </script>
+
 <!--//pop-up-box -->
 <!-- web-fonts -->  
 <link href="../fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
@@ -100,6 +124,7 @@
 				<div class="w3agile properties"> 
 					<h3 class="w3ls-title"> New Classes</h3> 
 					<p class="w3-text">Where belonging and life is more active and vital.</p>
+					<div id="addclassDiv"></div>
 					<div class="properties-w3lsrow" id="classesDiv"> 
 						
 						<div class="clearfix"> </div>
@@ -169,6 +194,23 @@
 		
 			$("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#00F",boxzoom:true}); // First scrollable DIV
 		});
+		
+		function joinClass(userid,classid){
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if(this.readyState == 4 && this.status == 200) {
+					if(this.responseText == "success") $("#addclassDiv").html("<div class='alert alert-success'><strong>Success!</strong> Congratulations, the class has been added to your classes. See it on your profile page.</div>");
+					else if(this.responseText == "error") $("#addclassDiv").html("<div class='alert alert-danger'><strong>Error!</strong> Sorry, the class has not been added to your classes. Kindly tray again later.</div>");
+				}
+				else if(this.readyState < 4 && this.readyState > 0 ){
+
+					 $("#addclassDiv").html("<div style='text-align:center; z-index:9999'><img src='images/loading.gif' style='width:50px'></div>");
+				}
+			};
+			xmlhttp.open("GET", "http://172.18.160.100/~abdelkawy/gymphp/new/joinclass.php?userid=" + userid + "&classid=" + classid, true);
+			xmlhttp.send();
+
+		}
 	</script>
 	<!-- //nicescroll-js -->
 	<!-- Bootstrap core JavaScript
