@@ -45,7 +45,7 @@
 		                document.getElementById("classesDiv").innerHTML = this.responseText;
 		            }
 		        };
-		        xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/mobile/classes.php?userid=" + userid, true);
+		        xmlhttp.open("GET", "http://172.18.130.130/gymphp/mobile/classes.php?userid=" + userid, true);
 		        xmlhttp.send();
 
 		}
@@ -63,7 +63,7 @@
 						 $("#addclassDiv").html("<div style='text-align:center; z-index:9999'><img src='images/loading.gif' style='width:50px'></div>");
 					}
 		        };
-		        xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/mobile/joinclass.php?userid=" + userid, true);
+		        xmlhttp.open("GET", "http://172.18.130.130/gymphp/mobile/joinclass.php?userid=" + userid, true);
 		        xmlhttp.send();
 
 		}
@@ -207,7 +207,7 @@
 					 $("#addclassDiv").html("<div style='text-align:center; z-index:9999'><img src='images/loading.gif' style='width:50px'></div>");
 				}
 			};
-			xmlhttp.open("GET", "http://portal.frigatesoft.com/gymapp/mobile/joinclass.php?userid=" + userid + "&classid=" + classid, true);
+			xmlhttp.open("GET", "http://172.18.130.130/gymphp/mobile/joinclass.php?userid=" + userid + "&classid=" + classid, true);
 			xmlhttp.send();
 
 		}

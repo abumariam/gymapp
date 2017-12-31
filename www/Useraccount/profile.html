@@ -65,7 +65,7 @@
 		                document.getElementById("personDetails").innerHTML = this.responseText;
 		            }
 		        };
-		        xmlhttp.open("POST", "http://portal.frigatesoft.com/gymapp/mobile/customer.php?userid=" + userid, true);
+		        xmlhttp.open("POST", "http://172.18.130.130/gymphp/mobile/customer.php?userid=" + userid, true);
 		        xmlhttp.send();
 
 		}
@@ -77,7 +77,7 @@
 		                document.getElementById("upcomingclasses").innerHTML = this.responseText;
 		            }
 		        };
-		        xmlhttp.open("POST", "http://portal.frigatesoft.com/gymapp/mobile/customer_class.php?userid=" + userid, true);
+		        xmlhttp.open("POST", "http://172.18.130.130/gymphp/mobile/customer_class.php?userid=" + userid, true);
 		        xmlhttp.send();
 
 		}
