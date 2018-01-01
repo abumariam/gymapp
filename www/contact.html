@@ -212,7 +212,7 @@
         <li class="menu-title">OMAN GYM</li>
         <li><a href="main.html"><i class="glyphicon glyphicon-home"></i> HOME </a></li>
         <li><a href="about.html"><i class="glyphicon glyphicon-info-sign"></i> ABOUT </a></li>
-        <li><a class="active" href="join.html"><i class="glyphicon glyphicon-briefcase"></i>JOIN US</a></li>
+        <li><a href="join.html"><i class="glyphicon glyphicon-briefcase"></i>JOIN US</a></li>
         <li><a href="coaches.html"><i class="glyphicon glyphicon-eye-open"></i> COACHES </a></li>
         <li><a href="nutrition.html"><i class="glyphicon glyphicon-apple"></i> NUTRITION</a></li>
         <li><a href="#" class="menu"><i class="glyphicon glyphicon-duplicate"></i> USER<span class="glyphicon glyphicon-menu-down"></span></a>
@@ -226,7 +226,7 @@
 							});
 						</script> 
                 </li>
-        <li><a href="contact.html"><i class="glyphicon glyphicon-envelope"></i> CONTACT </a></li>
+        <li><a class="active" href="contact.html"><i class="glyphicon glyphicon-envelope"></i> CONTACT </a></li>
       </ul>
             </nav>
     <button class="close-button" id="close-button">C</button>
@@ -247,8 +247,8 @@
                       <h3><a href="main.html">OMAN GYM</a></h3>
                     </div>
             <div class="login-form">
-				<div class="wthree-text" id="errorMSG"></div>
-                      <form action="#" method="post">
+				<div id="errorMSG"></div>
+                      <form action="#" method="get" id="formLogin">
                 <div class="styled-input">
                           <input type="text" id="Username" required>
                           <label>Username</label>
@@ -284,7 +284,7 @@
                     </div>
             <div class="login-form signup-form">
                      				<div class="wthree-text" id="errorReg"></div>
-                      <form action="#" method="post">
+                      <form action="#" method="get" id="formRegist">
                 <div class="styled-input">
                           <input type="text" id="fname" required>
                           <label>First name</label>
